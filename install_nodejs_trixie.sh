@@ -121,7 +121,11 @@ install_dependencies() {
 
 remove_old_nodejs() {
     log_info "Suppression des anciennes installations de Node.js (si présentes)..."
-    if dpkg-query -W -f='${Status}' nodejs 2>/dev/null | grep -q "install ok installed"; then
+
+    local status
+    status=$(dpkg-query -W -f='${Status}' nodejs 2>/dev/null) || true
+
+    if echo "$status" | grep -q "install ok installed"; then
         apt-get remove -y nodejs npm > /dev/null 2>&1 || true
         apt-get autoremove -y > /dev/null 2>&1 || true
         log_success "Ancienne version supprimée."
@@ -132,8 +136,8 @@ remove_old_nodejs() {
     # Supprimer les anciens dépôts NodeSource s'ils existent
     local sources_list="/etc/apt/sources.list.d/nodesource.list"
     local old_key="/usr/share/keyrings/nodesource.gpg"
-    [[ -f "$sources_list" ]] && rm -f "$sources_list"
-    [[ -f "$old_key" ]]      && rm -f "$old_key"
+    [[ -f "$sources_list" ]] && rm -f "$sources_list" || true
+    [[ -f "$old_key" ]]      && rm -f "$old_key"      || true
 }
 
 add_nodesource_repo() {
