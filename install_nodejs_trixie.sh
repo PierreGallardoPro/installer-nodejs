@@ -121,7 +121,7 @@ install_dependencies() {
 
 remove_old_nodejs() {
     log_info "Suppression des anciennes installations de Node.js (si présentes)..."
-    if dpkg -l nodejs &>/dev/null; then
+    if dpkg-query -W -f='${Status}' nodejs 2>/dev/null | grep -q "install ok installed"; then
         apt-get remove -y nodejs npm > /dev/null 2>&1 || true
         apt-get autoremove -y > /dev/null 2>&1 || true
         log_success "Ancienne version supprimée."
