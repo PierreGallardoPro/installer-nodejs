@@ -1,4 +1,4 @@
-# 📦 install_nodejs_trixie.sh
+# 📦 install-nodejs-trixie.sh
 
 Script Bash d'installation automatisée de **Node.js** sur **Debian 13 Trixie**, via le dépôt officiel [NodeSource](https://github.com/nodesource/distributions).
 
@@ -43,26 +43,26 @@ git clone <url-du-repo>
 cd <dossier>
 
 # Ou directement
-wget https://<url>/install_nodejs_trixie.sh
+wget https://<url>/install-nodejs-trixie.sh
 ```
 
 ### 2. Rendre le script exécutable
 
 ```bash
-chmod +x install_nodejs_trixie.sh
+chmod +x install-nodejs-trixie.sh
 ```
 
 ### 3. Lancer l'installation
 
 ```bash
 # Mode interactif — un menu vous propose de choisir la version
-sudo ./install_nodejs_trixie.sh
+sudo ./install-nodejs-trixie.sh
 
 # Installer directement la version LTS (24.x) — recommandée production
-sudo ./install_nodejs_trixie.sh --lts
+sudo ./install-nodejs-trixie.sh --lts
 
 # Installer directement la version Current (25.x) — dernière version
-sudo ./install_nodejs_trixie.sh --current
+sudo ./install-nodejs-trixie.sh --current
 ```
 
 ---
